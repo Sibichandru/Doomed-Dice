@@ -6,7 +6,7 @@
 # then comparing it with the origibal probabilities 
 # if matches then return the values of the dies 
 
-import part_a
+import part_a,helper
 from array import array
 # print function to print elemente in new line
 def printOrderly(array):
@@ -60,9 +60,11 @@ def transform(die_a,die_b):
      for b in new_die_b_possibility:
         # print(a,b)(!comparing possibilities success!)
         # converting the tuples to array so that it can be passed to the method in the part_a.py file,reusing the code
-        new_sum_possibility = part_a.all_Probability(array('i',a),array('i',b))
+        # as the sum of all spots of a six side die is 21 and 2 dice gives the42 so if the sum of the both dice doesnot addup to 42 the set will be ignored
+        if((helper.sumOfArray(a)+helper.sumOfArray(b))==42):
+          new_sum_possibility = part_a.all_Probability(array('i',a),array('i',b))
         # checling every answers to find if any one matches the original probabilities,if matches returning it
-        if(original_possibilities == new_sum_possibility):
-           New_Die_A = a
-           New_Die_B = b
-           return New_Die_A,New_Die_B
+          if(original_possibilities == new_sum_possibility):
+            New_Die_A = a
+            New_Die_B = b
+            return New_Die_A,New_Die_B
